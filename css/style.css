@@ -437,6 +437,7 @@ footer {
         flex-direction: row;
         flex-wrap: nowrap;
         gap: 8px;
+        justify-content: center;
     }
 
     .store-badge {
