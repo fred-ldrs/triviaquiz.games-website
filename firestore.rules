@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /community_questions/{doc} {
+
+      // Anyone may submit a question (create only).
+      // Validates required fields, types, and max lengths.
+      allow create: if
+        request.resource.data.keys().hasAll(['question', 'answer', 'topic', 'category', 'status', 'createdAt'])
+        && request.resource.data.question  is string
+        && request.resource.data.question.size()  > 0
+        && request.resource.data.question.size()  <= 500
+        && request.resource.data.answer    is string
+        && request.resource.data.answer.size()    > 0
+        && request.resource.data.answer.size()    <= 300
+        && request.resource.data.topic     is string
+        && request.resource.data.topic     in ['Bitcoin', 'Board Game']
+        && request.resource.data.category  is string
+        && request.resource.data.category.size()  > 0
+        && request.resource.data.category.size()  <= 100
+        // status must be 'pending' on create – users cannot self-approve
+        // Full status enum (set by admin): pending | approved | declined | implemented | duplicate | needs_edit
+        && request.resource.data.status == 'pending'
+        // difficulty: only allowed for Bitcoin, optional
+        && (
+          !('difficulty' in request.resource.data)
+          || request.resource.data.difficulty == null
+          || (request.resource.data.topic == 'Bitcoin'
+              && request.resource.data.difficulty in ['easy', 'normal', 'difficult'])
+        )
+        // optional wrongAnswers: absent or list of strings
+        && (
+          !('wrongAnswers' in request.resource.data)
+          || request.resource.data.wrongAnswers == null
+          || (request.resource.data.wrongAnswers is list && request.resource.data.wrongAnswers.size() <= 3)
+        )
+        // optional author field: absent or string ≤ 100 chars
+        && (
+          !('author' in request.resource.data)
+          || request.resource.data.author == null
+          || (request.resource.data.author is string && request.resource.data.author.size() <= 100)
+        );
+
+      // Anyone may read approved or implemented questions.
+      allow read: if resource.data.status in ['approved', 'implemented'];
+
+      // No public update or delete.
+    }
+  }
+}

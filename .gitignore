@@ -1,0 +1,9 @@
+# Firebase config with real credentials – never commit
+js/firebase-config.js
+
+# Firebase CLI cache
+.firebase/
+
+# OS
+.DS_Store
+Thumbs.db

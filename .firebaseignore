@@ -1,0 +1,17 @@
+# Firebase deploy ignores – overrides .gitignore
+# firebase-config.js intentionally NOT listed here so it gets deployed
+
+.git
+.github
+.gitignore
+.firebaserc
+firebase.json
+firestore.rules
+firestore.indexes.json
+README.md
+MODERATION.md
+js/firebase-config.template.js
+
+# OS
+.DS_Store
+Thumbs.db

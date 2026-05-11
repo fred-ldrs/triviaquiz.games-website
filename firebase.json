@@ -1,0 +1,21 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      ".git",
+      ".github",
+      ".gitignore",
+      ".firebaserc",
+      "firebase.json",
+      "firestore.rules",
+      "README.md",
+      "js/firebase-config.template.js"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
+  }
+}
