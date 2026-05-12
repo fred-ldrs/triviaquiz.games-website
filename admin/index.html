@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; base-uri 'self'; form-action 'self';">
+    <title>Admin – triviaquiz.games</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
+    <style>
+        /* ── Password gate ─────────────────────────────────── */
+        #gate {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .gate-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 360px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+        }
+        .gate-card h2 {
+            margin: 0 0 1.5rem;
+            font-size: 1.2rem;
+            color: var(--light-text);
+            text-align: center;
+        }
+        .gate-card input[type="password"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.07);
+            color: var(--light-text);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+        .gate-card .btn { width: 100%; }
+        .gate-error {
+            color: #ff6b6b;
+            font-size: 0.875rem;
+            text-align: center;
+            margin-top: 0.75rem;
+            min-height: 1.2em;
+        }
+
+        /* ── Admin UI ──────────────────────────────────────── */
+        #admin { display: none; }
+
+        /* Filter tabs */
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .filter-tab {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: var(--gray-text);
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        .filter-tab.active,
+        .filter-tab:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #fff;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+        }
+        .stat { display: flex; flex-direction: column; align-items: center; }
+        .stat-num { font-size: 1.5rem; font-weight: 700; color: var(--accent-color); }
+        .stat-lbl { font-size: 0.72rem; color: var(--gray-text); text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* Question cards */
+        .question-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid transparent;
+        }
+        .question-card[data-status="pending"]     { border-left-color: #f59e0b; }
+        .question-card[data-status="approved"]    { border-left-color: #10b981; }
+        .question-card[data-status="implemented"] { border-left-color: #3b82f6; }
+        .question-card[data-status="declined"]    { border-left-color: #ef4444; }
+        .question-card[data-status="duplicate"]   { border-left-color: #f97316; }
+        .question-card[data-status="needs_edit"]  { border-left-color: #a855f7; }
+
+        .card-question {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--light-text);
+            margin-bottom: 0.4rem;
+        }
+        .card-answer {
+            color: #10b981;
+            font-size: 0.9rem;
+            margin-bottom: 0.35rem;
+        }
+        .card-wrong {
+            font-size: 0.82rem;
+            color: var(--gray-text);
+            margin-bottom: 0.5rem;
+        }
+        .card-meta {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 0.85rem;
+            align-items: center;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .badge-pending     { background: rgba(245,158,11,0.2);  color: #f59e0b; }
+        .badge-approved    { background: rgba(16,185,129,0.2);  color: #10b981; }
+        .badge-implemented { background: rgba(59,130,246,0.2);  color: #3b82f6; }
+        .badge-declined    { background: rgba(239,68,68,0.2);   color: #ef4444; }
+        .badge-duplicate   { background: rgba(249,115,22,0.2);  color: #f97316; }
+        .badge-needs_edit  { background: rgba(168,85,247,0.2);  color: #a855f7; }
+
+        /* Action buttons */
+        .card-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .action-btn {
+            padding: 0.35rem 0.85rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05);
+            color: var(--light-text);
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+        .action-btn:hover  { background: rgba(255,255,255,0.12); }
+        .action-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+        .action-btn.approve     { border-color: #10b981; color: #10b981; }
+        .action-btn.implemented { border-color: #3b82f6; color: #3b82f6; }
+        .action-btn.decline     { border-color: #ef4444; color: #ef4444; }
+        .action-btn.duplicate   { border-color: #f97316; color: #f97316; }
+        .action-btn.needs-edit  { border-color: #a855f7; color: #a855f7; }
+
+        #admin-loading, #admin-empty {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray-text);
+        }
+
+        .admin-page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .admin-page-header h2 { margin: 0; }
+        #logout-btn {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px;
+            color: var(--gray-text);
+            cursor: pointer;
+            font-size: 0.85rem;
+            padding: 0.4rem 0.9rem;
+            transition: all 0.2s;
+        }
+        #logout-btn:hover { border-color: #ef4444; color: #ef4444; }
+    </style>
+</head>
+<body>
+
+    <!-- ── PASSWORD GATE ──────────────────────────────────────── -->
+    <div id="gate">
+        <div class="gate-card">
+            <h2><i class="fas fa-lock"></i>&nbsp; Admin</h2>
+            <input type="password" id="pw-input" placeholder="Password" autocomplete="current-password">
+            <button class="btn" id="login-btn">Login</button>
+            <div class="gate-error" id="gate-error" role="alert" aria-live="polite"></div>
+        </div>
+    </div>
+
+    <!-- ── ADMIN UI ───────────────────────────────────────────── -->
+    <div id="admin">
+        <header>
+            <div class="container">
+                <h1><a href="../index.html" style="color:inherit;text-decoration:none;">triviaquiz.games</a></h1>
+                <nav id="main-nav">
+                    <ul>
+                        <li><a href="../community-questions/">Community Questions</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section class="intro-section">
+                <div class="container">
+
+                    <div class="admin-page-header">
+                        <h2>Moderation</h2>
+                        <button id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="stats-bar" id="stats-bar" hidden>
+                        <div class="stat">
+                            <span class="stat-num" id="stat-total">–</span>
+                            <span class="stat-lbl">Total</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num" id="stat-pending" style="color:#f59e0b">–</span>
+                            <span class="stat-lbl">Pending</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num" id="stat-approved" style="color:#10b981">–</span>
+                            <span class="stat-lbl">Approved</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num" id="stat-implemented" style="color:#3b82f6">–</span>
+                            <span class="stat-lbl">Implemented</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num" id="stat-declined" style="color:#ef4444">–</span>
+                            <span class="stat-lbl">Declined</span>
+                        </div>
+                    </div>
+
+                    <!-- Filter tabs -->
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="pending">Pending <span id="cnt-pending"></span></button>
+                        <button class="filter-tab" data-filter="all">All</button>
+                        <button class="filter-tab" data-filter="approved">Approved</button>
+                        <button class="filter-tab" data-filter="implemented">Implemented</button>
+                        <button class="filter-tab" data-filter="declined">Declined</button>
+                        <button class="filter-tab" data-filter="duplicate">Duplicate</button>
+                        <button class="filter-tab" data-filter="needs_edit">Needs Edit</button>
+                    </div>
+
+                    <div id="admin-loading">Loading…</div>
+                    <div id="admin-empty" hidden>No questions for this filter.</div>
+                    <div id="question-list"></div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script type="module" src="../js/admin-firebase.js"></script>
+</body>
+</html>

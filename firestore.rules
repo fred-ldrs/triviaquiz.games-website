@@ -42,7 +42,16 @@ service cloud.firestore {
         );
 
       // Anyone may read approved or implemented questions.
-      allow read: if resource.data.status in ['approved', 'implemented'];
+      // Authenticated admin may read all questions (for moderation).
+      allow read: if
+        request.auth != null
+        || resource.data.status in ['approved', 'implemented'];
+
+      // Authenticated admin may update the status field only.
+      allow update: if
+        request.auth != null
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+        && request.resource.data.status in ['pending', 'approved', 'implemented', 'declined', 'duplicate', 'needs_edit'];
 
       // No public update or delete.
     }
