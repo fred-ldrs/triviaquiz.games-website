@@ -1,0 +1,353 @@
+/* Bitcoin-Quiz Orange Theme */
+:root {
+  --bitcoin-orange: #f7931a;
+  --bitcoin-dark: #1e1e1e;
+  --bitcoin-light: #ffffff;
+  --bitcoin-grey: #2b2b2b;
+  --bitcoin-border: #444;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* App Promotion Banner */
+#app-banner {
+  background-color: rgba(247, 147, 26, 0.15);
+  border-bottom: 1px solid rgba(247, 147, 26, 0.3);
+  padding: 8px 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: nowrap;
+  position: relative;
+}
+
+.banner-text {
+  color: var(--bitcoin-light);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.banner-badge {
+  display: inline-flex;
+  align-items: center;
+}
+
+.banner-badge img {
+  height: 32px;
+  width: auto;
+  transition: opacity 0.2s ease;
+}
+
+.banner-badge:hover img {
+  opacity: 0.8;
+}
+
+.close-banner {
+  background: none;
+  border: none;
+  color: var(--bitcoin-light);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  position: absolute;
+  right: 15px;
+}
+
+.close-banner:hover {
+  opacity: 1;
+  background: none;
+}
+
+@media (max-width: 600px) {
+  .banner-content {
+    gap: 10px;
+    padding: 5px 40px 5px 15px;
+    flex-wrap: wrap;
+  }
+  
+  .banner-text {
+    font-size: 0.8rem;
+    text-align: center;
+    flex: 1 1 100%;
+  }
+  
+  .banner-badge {
+    margin: 0 auto;
+  }
+  
+  .banner-badge img {
+    height: 28px;
+  }
+  
+  .close-banner {
+    right: 10px;
+  }
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bitcoin-dark);
+  color: var(--bitcoin-light);
+  font-family: var(--font-family);
+  min-height: 100vh;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 1;
+  margin: 40px auto 0 auto;
+  background-color: var(--bitcoin-grey);
+  border-radius: 16px;
+  padding: 30px;
+  width: 90%;
+  max-width: 700px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--bitcoin-border);
+}
+
+h1, h2, h3 {
+  color: var(--bitcoin-orange);
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+  color: var(--bitcoin-light);
+}
+
+select, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: var(--bitcoin-orange);
+  border: none;
+  border-radius: 8px;
+  color: var(--bitcoin-dark);
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+select {
+  background-color: var(--bitcoin-light);
+  color: var(--bitcoin-dark);
+}
+
+button:hover {
+  background-color: #e67e00;
+}
+
+#question-container {
+  margin-top: 20px;
+}
+
+#answers button {
+  margin-bottom: 10px;
+  background-color: #333;
+  color: white;
+  border: 1px solid var(--bitcoin-border);
+}
+
+#answers button.correct {
+  background-color: #2ecc71;
+}
+
+#answers button.incorrect {
+  background-color: #e74c3c;
+}
+
+#result {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #222;
+  border: 1px solid var(--bitcoin-orange);
+  border-radius: 10px;
+  font-size: 1.2rem;
+  color: var(--bitcoin-orange);
+  text-align: center;
+}
+
+.progress {
+  margin-top: 20px;
+  height: 10px;
+  width: 100%;
+  background-color: #555;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--bitcoin-orange);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+footer {
+  text-align: center;
+  color: #888;
+  padding: 1em;
+  font-size: 0.8rem;
+}
+
+footer a {
+  color: var(--bitcoin-orange);
+  text-decoration: none;
+  margin: 0 0.5em;
+  display: inline-block;
+}
+
+.quiz-logo {
+  display: block;
+  margin: 0 auto 10px auto; /* zentriert + Abstand nach unten */
+  max-width: 100px;         /* je nach Geschmack */
+  height: auto;
+}
+
+.bitcoin-donate-button {
+  display: inline-block;
+  background: linear-gradient(45deg, #f7931a, #ffad33);
+  color: white;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+}
+
+.bitcoin-donate-button {
+  display: inline-block;
+  background: linear-gradient(45deg, #f7931a, #ffad33);
+  color: white;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+  font-size: 16px; /* Increased from 14px */
+}
+
+.bitcoin-donate-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(45deg, #ffad33, #f7931a);
+}
+
+.tagline {
+    text-align: center;
+    font-size: 1.1rem; /* von 0.9rem auf 1.1rem erhöht */
+    color: white;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+/* Styling für Ergebnisbilder */
+.result-image {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.result-image img {
+  max-width: 50%;
+  height: auto;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Styling für das Intro-Bild */
+#intro-image {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.intro-image {
+  max-width: 75%;
+  height: auto;
+  border-radius: 0;
+  box-shadow: none
+}
+
+/* GitHub-Link Styling */
+.github-link {
+  color: var(--bitcoin-orange);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.github-link:hover {
+  transform: translateY(-2px);
+}
+
+.github-link svg {
+  fill: var(--bitcoin-orange);
+  transition: fill 0.2s ease;
+}
+
+.github-link:hover svg {
+  fill: #ffad33;
+}
+
+/* Utility Classes */
+.hidden {
+  display: none;
+}
+
+/* Footer Styles */
+.footer-badge {
+  margin-bottom: 15px;
+}
+
+.footer-github {
+  margin-top: 10px;
+}
+
+.play-badge {
+  height: 50px;
+}
+
+.github-icon {
+  vertical-align: text-bottom;
+  margin-right: 5px;
+}

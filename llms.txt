@@ -4,7 +4,7 @@
 
 ## Pages
 
-- [Home](https://triviaquiz.games/): Hub listing all available trivia quiz topics with links to the PWA and Google Play store.
+- [Home](https://triviaquiz.games/): Hub listing all available trivia quiz topics with links to the PWAs and Google Play store.
 - [Community Questions](https://triviaquiz.games/community-questions/): Browse trivia questions submitted by the community, paginated and filterable by category.
 - [Submit a Question](https://triviaquiz.games/submit/): Submit your own trivia question to be reviewed and added to the community pool.
 - [Bitcoin Trivia Quiz PWA](https://bitcoin.triviaquiz.games): Interactive Bitcoin trivia quiz playable in the browser as a Progressive Web App.
@@ -12,6 +12,8 @@
 
 ## Optional
 
+- [Bitcoin Trivia Quiz Legacy](https://triviaquiz.games/legacy/bitcoin/): The original Bitcoin Trivia quiz (formerly bitcointrivia.org), preserved as a legacy page. Multilingual (DE/EN/FR), no longer actively maintained. Contact: hello@triviaquiz.games
 - [Imprint / Impressum](https://triviaquiz.games/imprint.html): Legal notice in German (Impressum, required under German law).
-- [Privacy Policy / Datenschutzerklärung](https://triviaquiz.games/privacy.html): Privacy policy in German and English (GDPR / DSGVO).
+- [Privacy Policy / Datenschutzerklärung](https://triviaquiz.games/privacy.html): Privacy policy in German and English (GDPR / DSGVO). No cookies, no tracking. Hosted on Firebase Hosting (Google LLC).
 - [Sitemap](https://triviaquiz.games/sitemap.xml): XML sitemap for crawlers.
+- [robots.txt](https://triviaquiz.games/robots.txt): Crawler directives.
