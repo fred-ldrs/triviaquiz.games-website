@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /js/
+Disallow: /css/
+Disallow: /assets/fontawesome/
+
+Sitemap: https://triviaquiz.games/sitemap.xml

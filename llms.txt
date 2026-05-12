@@ -1,0 +1,17 @@
+# triviaquiz.games
+
+> Free interactive trivia quiz games on Bitcoin, board games, and more — available as Progressive Web Apps and on Android.
+
+## Pages
+
+- [Home](https://triviaquiz.games/): Hub listing all available trivia quiz topics with links to the PWA and Google Play store.
+- [Community Questions](https://triviaquiz.games/community-questions/): Browse trivia questions submitted by the community, paginated and filterable by category.
+- [Submit a Question](https://triviaquiz.games/submit/): Submit your own trivia question to be reviewed and added to the community pool.
+- [Bitcoin Trivia Quiz PWA](https://bitcoin.triviaquiz.games): Interactive Bitcoin trivia quiz playable in the browser as a Progressive Web App.
+- [Board Game Trivia Quiz PWA](https://boardgame.triviaquiz.games): Interactive board game trivia quiz playable in the browser as a Progressive Web App.
+
+## Optional
+
+- [Imprint / Impressum](https://triviaquiz.games/imprint.html): Legal notice in German (Impressum, required under German law).
+- [Privacy Policy / Datenschutzerklärung](https://triviaquiz.games/privacy.html): Privacy policy in German and English (GDPR / DSGVO).
+- [Sitemap](https://triviaquiz.games/sitemap.xml): XML sitemap for crawlers.
