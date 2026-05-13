@@ -7,6 +7,7 @@
 - [Home](https://triviaquiz.games/): Hub listing all available trivia quiz topics with links to the PWAs and Google Play store.
 - [Community Questions](https://triviaquiz.games/community-questions/): Browse trivia questions submitted by the community, paginated and filterable by category.
 - [Submit a Question](https://triviaquiz.games/submit/): Submit your own trivia question to be reviewed and added to the community pool.
+- [FAQ](https://triviaquiz.games/faq/): Frequently asked questions about triviaquiz.games — how to play, PWA installation, offline use, Android support, and how to submit questions.
 - [Bitcoin Trivia Quiz PWA](https://bitcoin.triviaquiz.games): Interactive Bitcoin trivia quiz playable in the browser as a Progressive Web App.
 - [Board Game Trivia Quiz PWA](https://boardgame.triviaquiz.games): Interactive board game trivia quiz playable in the browser as a Progressive Web App.
 

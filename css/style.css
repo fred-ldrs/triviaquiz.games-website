@@ -517,6 +517,76 @@ footer {
     }
 }
 
+/* FAQ Section */
+.faq-section {
+    padding: 60px 0;
+}
+
+.faq-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 32px;
+    color: var(--light-text);
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-list details {
+    background-color: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.faq-list details[open] {
+    border-color: var(--primary-color);
+}
+
+.faq-list summary {
+    cursor: pointer;
+    padding: 18px 20px;
+    font-weight: 600;
+    color: var(--light-text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+}
+
+.faq-list summary::-webkit-details-marker { display: none; }
+
+.faq-list summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    flex-shrink: 0;
+    line-height: 1;
+    transition: transform 0.2s;
+}
+
+.faq-list details[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.faq-list .faq-answer {
+    padding: 0 20px 18px;
+    color: var(--gray-text);
+    line-height: 1.7;
+}
+
+.faq-list .faq-answer a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
 /* Impressum Page */
 .impressum-section {
     padding: 80px 0;
