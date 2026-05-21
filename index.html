@@ -31,14 +31,18 @@
     </header>
 
     <main>
-        <section class="intro-section">
+        <section class="hero-section">
             <div class="container">
-                <h2>Available Trivia Quiz Topics</h2>
-                <p>Challenge yourself with interactive trivia quizzes. Available on Android and as a Progressive Web App.</p>
+                <h2 class="hero-title">Free Trivia Quiz Games — Play Online or on Android</h2>
+                <p class="hero-subtitle">Test your knowledge with interactive trivia quizzes on Bitcoin, Board Games, Chemical Elements, Country Flags and more. Play instantly in your browser as a PWA or download the app.</p>
+                <div class="hero-cta">
+                    <a href="#quiz-topics" class="btn-hero-primary">Browse Quizzes</a>
+                    <a href="submit/" class="btn-hero-secondary">Submit a Question</a>
+                </div>
             </div>
         </section>
 
-        <section class="topics-section">
+        <section class="topics-section" id="quiz-topics">
             <div class="container">
 
                 <!-- Bitcoin Trivia -->
@@ -46,8 +50,8 @@
                     <div class="topic-header">
                         <i class="fab fa-bitcoin topic-icon"></i>
                         <div>
-                            <h3>Bitcoin Trivia Quiz</h3>
-                            <p>Test your Bitcoin knowledge with this interactive trivia quiz game.</p>
+                            <h3><a href="bitcoin/" style="color:inherit;">Bitcoin Trivia Quiz</a></h3>
+                            <p>Test your Bitcoin knowledge with this interactive trivia quiz game. <a href="bitcoin/">Learn more</a></p>
                         </div>
                     </div>
                     <div class="topic-actions">
@@ -65,8 +69,8 @@
                     <div class="topic-header">
                         <i class="fas fa-dice topic-icon"></i>
                         <div>
-                            <h3>Board Game Trivia Quiz</h3>
-                            <p>Test your board game knowledge with this interactive trivia quiz game.</p>
+                            <h3><a href="boardgame/" style="color:inherit;">Board Game Trivia Quiz</a></h3>
+                            <p>Test your board game knowledge with this interactive trivia quiz game. <a href="boardgame/">Learn more</a></p>
                         </div>
                     </div>
                     <div class="topic-actions">
@@ -84,12 +88,28 @@
                     <div class="topic-header">
                         <i class="fas fa-flask topic-icon"></i>
                         <div>
-                            <h3>Elements Trivia Quiz (Beta)</h3>
-                            <p>Test your knowledge of chemical elements with this interactive trivia quiz game.</p>
+                            <h3><a href="elements/" style="color:inherit;">Elements Trivia Quiz (Beta)</a></h3>
+                            <p>Test your knowledge of chemical elements with this interactive trivia quiz game. <a href="elements/">Learn more</a></p>
                         </div>
                     </div>
                     <div class="topic-actions">
                         <a href="https://elements.triviaquiz.games" target="_blank" rel="noopener noreferrer" class="store-btn">
+                            <img src="assets/images/pwa/PWA-dark-en.svg" alt="Open as Web App (PWA)" class="store-badge">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Country Flags Trivia -->
+                <div class="topic-card">
+                    <div class="topic-header">
+                        <i class="fas fa-flag topic-icon"></i>
+                        <div>
+                            <h3><a href="countryflags/" style="color:inherit;">Country Flags Trivia Quiz (Beta)</a></h3>
+                            <p>Test your knowledge of country flags with this interactive trivia quiz game. <a href="countryflags/">Learn more</a></p>
+                        </div>
+                    </div>
+                    <div class="topic-actions">
+                        <a href="https://countryflags.triviaquiz.games" target="_blank" rel="noopener noreferrer" class="store-btn">
                             <img src="assets/images/pwa/PWA-dark-en.svg" alt="Open as Web App (PWA)" class="store-badge">
                         </a>
                     </div>
