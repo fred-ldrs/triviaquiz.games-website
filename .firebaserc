@@ -1,5 +1,7 @@
 {
   "projects": {
     "default": "triviaquiz-website"
-  }
+  },
+  "targets": {},
+  "etags": {}
 }
