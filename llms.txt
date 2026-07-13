@@ -15,6 +15,6 @@
 
 - [Bitcoin Trivia Quiz Legacy](https://triviaquiz.games/legacy/bitcoin/): The original Bitcoin Trivia quiz (formerly bitcointrivia.org), preserved as a legacy page. Multilingual (DE/EN/FR), no longer actively maintained. Contact: hello@triviaquiz.games
 - [Imprint / Impressum](https://legal.lueders.solutions/en/imprint/): Legal notice in German (Impressum, required under German law).
-- [Privacy Policy / Datenschutzerklärung](https://legal.lueders.solutions/en/privacy/web-triviaquiz/): Privacy policy in German and English (GDPR / DSGVO). No cookies, no tracking. Hosted on Firebase Hosting (Google LLC).
+- [Privacy Policy / Datenschutzerklärung](https://legal.lueders.solutions/en/privacy/web-octoquizpus/): Privacy policy in German and English (GDPR / DSGVO). No cookies, no tracking. Hosted on Firebase Hosting (Google LLC).
 - [Sitemap](https://triviaquiz.games/sitemap.xml): XML sitemap for crawlers.
 - [robots.txt](https://triviaquiz.games/robots.txt): Crawler directives.
